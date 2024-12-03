@@ -1,0 +1,118 @@
+/* Contenedor principal */
+.contact-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    background-color: white; /* Fondo blanco */
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  .navbar-logo img {
+    width: 150px;
+  }
+  
+  /* Breadcrumb */
+  .breadcrumb {
+    text-align: left;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+  
+  .breadcrumb a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+  
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Formulario */
+  .contact-form h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .input-field {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd; /* Contorno gris claro */
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: transparent; /* Fondo transparente */
+    color: #333; /* Texto negro */
+  }
+  
+  .input-field:focus {
+    outline: none; /* Elimina el contorno predeterminado */
+    border-color: #0070f3; /* Contorno azul al enfocar */
+    box-shadow: 0 0 4px rgba(0, 112, 243, 0.5); /* Sombra ligera */
+  }
+  
+  .input-group {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .input-group .input-field {
+    flex: 1;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .checkbox-container label {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  /* Botones */
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+  
+  .btn-primary {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #45a049;
+  }
+  
+  .btn-secondary {
+    text-decoration: none;
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #eee;
+  }
+  
