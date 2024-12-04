@@ -1,0 +1,99 @@
+/* Contenedor principal */
+.confirmacion-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f9;
+    padding: 1rem;
+  }
+  
+  /* Tarjeta de confirmación */
+  .confirmacion-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 550px;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  /* Icono de éxito */
+  .icono-exito {
+    background-color: #f0f8ff;
+    border-radius: 50%;
+    display: inline-block;
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .icono-exito img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  /* Título principal */
+  .titulo {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+  
+  /* Mensaje de éxito */
+  .mensaje {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+  }
+  
+  /* Detalles de la compra */
+  .detalles {
+    font-size: 1rem;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+  
+  .detalles p {
+    margin: 0.5rem 0;
+  }
+  
+  /* Botones de acción */
+  .acciones {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .acciones button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Botón de regresar al inicio */
+  .btn-home {
+    background-color: #0070f3;
+    color: white;
+  }
+  
+  .btn-home:hover {
+    background-color: #005bb5;
+  }
+  
+  /* Botón de ver mi pedido */
+  .btn-order-history {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .btn-order-history:hover {
+    background-color: #218838;
+  }
+  

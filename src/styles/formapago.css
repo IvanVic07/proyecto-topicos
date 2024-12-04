@@ -1,0 +1,174 @@
+/* Contenedor principal */
+.formapago-container {
+    font-family: 'Arial', sans-serif;
+    max-width: 800px; /* Ancho más compacto */
+    margin: 2rem auto;
+    padding: 1.5rem; /* Menos padding para un diseño más ajustado */
+    background-color: #fff;
+    border-radius: 10px; /* Bordes más redondeados */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .navbar-logo img {
+    max-width: 180px;
+  }
+  
+  /* Breadcrumb */
+  .breadcrumb {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  
+  .breadcrumb a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+  
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Contenido principal */
+  .formapago-content {
+    display: grid;
+    grid-template-columns: 1fr; /* Para un solo contenedor por fila */
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+  
+  /* Sección de Información y Dirección */
+  .info-box {
+    background-color: #f9f9f9; /* Fondo más claro */
+    padding: 1.2rem; /* Ajuste el padding para compactar el contenido */
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .info-details p {
+    margin: 0.5rem 0;
+  }
+  
+  .edit-link {
+    color: #0070f3;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .edit-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Resumen del pedido */
+  .formapago-summary {
+    background-color: #f9f9f9;
+    padding: 1.2rem; /* Ajustar padding */
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+  
+  .order-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .product-image {
+    width: 50px; /* Hacer la imagen más pequeña */
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  
+  .summary-line.total span {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  /* Botones */
+  .formapago-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+  }
+  
+  .btn-secondary {
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 0.5rem 1.4rem; /* Reducir tamaño de botones */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    width: 40%; /* Reducir tamaño de botones */
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #ddd;
+  }
+  
+  .btn-primary {
+    background-color: #0070f3;
+    color: white;
+    padding: 0.5rem 1.4rem; /* Reducir tamaño de botones */
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    width: 40%;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  
+  .btn-primary:hover {
+    background-color: #005bb5;
+  }
+  
+  /* Responsividad para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .formapago-content {
+      grid-template-columns: 1fr; /* Asegurarse que las secciones ocupen todo el espacio */
+    }
+  
+    .formapago-buttons {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    .btn-secondary, .btn-primary {
+      width: 80%; /* Hacer los botones más grandes en pantallas pequeñas */
+    }
+  }
+  

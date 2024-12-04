@@ -1,0 +1,152 @@
+/* Contenedor principal */
+.envio-container {
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  /* Breadcrumb */
+  .breadcrumb {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+  
+  .breadcrumb a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+  
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Contenido principal */
+  .envio-content {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  /* Columna izquierda */
+  .envio-left {
+    flex: 2;
+  }
+  
+  /* Info Box */
+  .info-box {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+  }
+  
+  .info-box h3 {
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .info-details p {
+    margin: 0.5rem 0;
+  }
+  
+  .edit-link {
+    color: #0070f3;
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+  
+  .edit-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Método de envío */
+  .shipping-method {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  /* Columna derecha */
+  .envio-right {
+    flex: 1;
+  }
+  
+  .order-summary {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-summary h3 {
+    margin-bottom: 1rem;
+  }
+  
+  .order-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .product-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  
+  .summary-line.total span {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  /* Estilos de los botones */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn-secondary, .btn-primary {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
