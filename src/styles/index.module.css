@@ -65,6 +65,8 @@
     cursor: pointer;
 }
 
+
+
 /* Productos Section */
 .productos {
     padding: 2rem;
@@ -137,6 +139,11 @@
   margin: 1rem auto 0; 
   text-align: center;
 }
+
+.beneficiosButton:hover {
+  background:  #66e76a;
+}
+
 
 
 .beneficios img {
@@ -224,6 +231,6 @@
   }
   
   .newsletter-form button:hover {
-    background: #f0f0f0;
+    background:  #66e76a;
   }
   

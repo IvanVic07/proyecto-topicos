@@ -10,7 +10,9 @@ import "./styles/ProductDetails.css"
 import "./styles/ShippingForm.css"
 import { PriceProvider } from '../context/PriceContext'; 
 
-import { ContactProvider } from '../context/ContactContext';
+
+import { PriceProvider } from "../context/PriceContext";
+import { ContactProvider } from "../context/ContactContext";
 
 
 
