@@ -1,0 +1,65 @@
+/* Container styles */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Form styles */
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Input group styles */
+  .inputGroup {
+    margin-bottom: 15px;
+  }
+  
+  /* Row for grouped inputs */
+  .row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  /* Input field styles */
+  .input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  /* Checkbox group */
+  .checkboxGroup {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  /* Button group styles */
+  .buttonGroup {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  /* Primary button */
+  .buttonPrimary {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Secondary button */
+  .buttonSecondary {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
