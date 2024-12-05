@@ -1,5 +1,6 @@
 import React from "react";
-import Link from "next/link"; // Importa Link para usar rutas en Next.js
+import Link from "next/link"; 
+import Image from "next/image"; 
 import { FaUser, FaShoppingCart } from "react-icons/fa"; 
 import styles from "../styles/Productos.module.css"; 
 
@@ -37,7 +38,9 @@ export default function Productos() {
     <div className={styles.container}>
       {/* Navbar */}
       <header className={styles.navbar}>
-        <div className={styles.logo}>DifuAura</div>
+       
+        <Image src="/logo.png" alt="Logo de DifuAura" width={120} height={40} /> {/* Ajusta el tamaño si es necesario */}
+
         <nav>
           <ul className={styles.navLinks}>
             <li>
