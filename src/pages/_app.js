@@ -6,6 +6,7 @@ import '../styles/formapago.css';
 import '../styles/confirmacionpedido.css';
 import "./styles/Register.css";
 import "./styles/Login.css";
+import "./styles/ProductDetails.css"
 import { PriceProvider } from '../context/PriceContext'; 
 
 import { ContactProvider } from '../context/ContactContext';
