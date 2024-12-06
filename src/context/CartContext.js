@@ -1,37 +1,51 @@
-import React, { createContext, useState, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
-// Crea el contexto
 const CartContext = createContext();
 
-// Proveedor del contexto
-export const CartProvider = ({ children }) => {
+export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
 
-  // Función para añadir un producto al carrito
-  const addToCart = (product) => {
-    setCartItems((prevItems) => {
-      // Comprueba si el producto ya está en el carrito
-      const existingItem = prevItems.find((item) => item.nombre === product.nombre);
+  const updateItemQuantity = (nombre, nuevaCantidad) => {
+    setCartItems((prevCartItems) =>
+      prevCartItems.map((item) =>
+        item.nombre === nombre
+          ? { ...item, cantidad: nuevaCantidad > 0 ? nuevaCantidad : 1 } // Asegúrate de no permitir cantidades menores a 1
+          : item
+      )
+    );
+  };
+
+  const addToCart = (producto) => {
+    setCartItems((prevCartItems) => {
+      const existingItem = prevCartItems.find((item) => item.nombre === producto.nombre);
       if (existingItem) {
-        // Incrementa la cantidad si el producto ya existe
-        return prevItems.map((item) =>
-          item.nombre === product.nombre
+        return prevCartItems.map((item) =>
+          item.nombre === producto.nombre
             ? { ...item, cantidad: item.cantidad + 1 }
             : item
         );
-      } else {
-        // Agrega el producto al carrito
-        return [...prevItems, { ...product, cantidad: 1 }];
       }
+      return [...prevCartItems, { ...producto, cantidad: 1 }];
     });
   };
 
+  const removeFromCart = (nombre) => {
+    setCartItems((prevCartItems) => prevCartItems.filter((item) => item.nombre !== nombre));
+  };
+
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart }}>
+    <CartContext.Provider
+      value={{ cartItems, updateItemQuantity, addToCart, removeFromCart, clearCart }}
+    >
       {children}
     </CartContext.Provider>
   );
-};
+}
 
-// Hook para usar el contexto   
-export const useCart = () => useContext(CartContext);
+export function useCart() {
+  return useContext(CartContext);
+}

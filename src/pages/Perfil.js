@@ -1,35 +1,42 @@
-import styles from "../styles/Perfil.module.css";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import styles from "../styles/Perfil.module.css";
 
-export default function Profile() {
+export default function Perfil() {
   const router = useRouter();
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (user) {
+      setUserData(user);
+    } else {
+      router.push("/Login"); // Si no hay usuario, redirige al login
+    }
+  }, [router]);
 
   const handleEdit = () => {
     alert("Función para editar perfil aún no implementada.");
   };
 
-  const handleGoHome = () => {
-    router.push("/"); // Navegar a la página de inicio
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInUser");
+    alert("Sesión cerrada.");
+    router.push("/");
   };
+
+  if (!userData) {
+    return <div>Cargando...</div>; // Muestra un mensaje mientras se obtienen los datos
+  }
 
   return (
     <div className={styles.centerContainer}>
       <div className={styles.profileContainer}>
-        {/* Botón para volver al índice */}
-        <div className={styles.logoContainer}>
-          <button className={styles.logoButton} onClick={handleGoHome}>
-            <img src="/logo.png" alt="Logo" className={styles.logoImage} />
-          </button>
-        </div>
-
-        {/* Encabezado */}
         <header className={styles.header}>
           <h1>Perfil de Usuario</h1>
         </header>
 
-        {/* Sección de perfil */}
         <section className={styles.profileSection}>
-          {/* Foto de perfil */}
           <div className={styles.profileImage}>
             <img
               src="https://static.thenounproject.com/png/363639-200.png"
@@ -37,34 +44,25 @@ export default function Profile() {
             />
           </div>
 
-          {/* Información del usuario */}
           <div className={styles.profileInfo}>
             <div className={styles.field}>
               <label>Nombre completo:</label>
-              <p>Juan Pérez</p>
-            </div>
-
-            <div className={styles.field}>
-              <label>Dirección:</label>
-              <p>Calle Falsa 123, Ciudad</p>
-            </div>
-
-            <div className={styles.field}>
-              <label>Sexo:</label>
-              <p>Masculino</p>
+              <p>{userData.name || "No especificado"}</p> {/* Cambia a name */}
             </div>
 
             <div className={styles.field}>
               <label>Correo electrónico:</label>
-              <p>juan.perez@example.com</p>
+              <p>{userData.email || "No especificado"}</p>
             </div>
           </div>
         </section>
 
-        {/* Botón de editar perfil */}
         <div className={styles.editButtonContainer}>
           <button className={styles.editButton} onClick={handleEdit}>
             Editar Perfil
+          </button>
+          <button className={styles.logoutButton} onClick={handleLogout}>
+            Cerrar Sesión
           </button>
         </div>
       </div>

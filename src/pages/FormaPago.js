@@ -17,6 +17,11 @@ export default function FormaPago() {
   useEffect(() => {
     const total = calcularSubtotal(); // Calcula el total dinámico
 
+    // Limpia el contenedor antes de renderizar los botones
+    if (paypalButtonContainerRef.current) {
+      paypalButtonContainerRef.current.innerHTML = "";
+    }
+
     if (window.paypal && paypalButtonContainerRef.current) {
       window.paypal.Buttons({
         createOrder: (data, actions) => {

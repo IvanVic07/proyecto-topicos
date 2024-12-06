@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router"; // Importa el hook useRouter
 import { FaUser, FaShoppingCart } from "react-icons/fa";
 import { useCart } from "../context/CartContext"; // Usa el contexto del carrito
 import styles from "../styles/index.module.css";
 
 const Index = () => {
+  const router = useRouter(); // Inicializa el hook de navegación
   const { addToCart } = useCart(); // Función para añadir productos al carrito
+  const [loggedInUser, setLoggedInUser] = useState(null); // Estado para verificar el usuario autenticado
+
+  useEffect(() => {
+    // Verifica si hay un usuario autenticado
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (user) {
+      setLoggedInUser(user);
+    }
+  }, []);
+
+  const handleHeroButtonClick = () => {
+    router.push("/Productos"); // Navega a la página /Productos
+  };
 
   const productos = [
     {
@@ -56,7 +71,7 @@ const Index = () => {
           </ul>
         </nav>
         <div className={styles.navIcons}>
-          <Link href="/Register">
+          <Link href={loggedInUser ? "/Perfil" : "/Register"}>
             <FaUser className={styles.icon} aria-label="Perfil de usuario" />
           </Link>
           <Link href="/cart">
@@ -70,7 +85,12 @@ const Index = () => {
         <div className={styles.heroOverlay}>
           <div>
             <h1 className={styles.heroTitle}>DifuAura</h1>
-            <button className={styles.heroButton}>Descubre nuestra colección</button>
+            <button
+              className={styles.heroButton}
+              onClick={handleHeroButtonClick} // Llama a la función para redirigir
+            >
+              Descubre nuestra colección
+            </button>
           </div>
         </div>
       </section>
@@ -99,27 +119,6 @@ const Index = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* Beneficios Section */}
-        <section id="beneficios" className={styles.beneficios}>
-          <div className={styles.beneficiosContent}>
-            <div className={styles.texto}>
-              <h1>Beneficios y más</h1>
-              <p className={styles.subtitulo}>Hecho para ti y tu hogar.</p>
-              <p>
-                Descubre nuestras esencias en aceite y transforma tu bienestar con aromas diseñados para equilibrar cuerpo y mente.
-                Conoce los beneficios terapéuticos que cada esencia tiene para ofrecerte.
-              </p>
-              <button className={styles.beneficiosButton}>Ver más</button>
-            </div>
-            <div className={styles.imagen}>
-              <img
-                src="https://www.elfinanciero.com.mx/resizer/v2/AIC3U4RJQFDSVDSYBQNVAOUWWM.jpeg?smart=true&auth=f9f9482cc3597d1019c41f9458936ccd859458bc2eed36836ea912e0a88833e0&width=1600&height=900"
-                alt="Beneficios"
-              />
-            </div>
           </div>
         </section>
       </main>

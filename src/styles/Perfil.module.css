@@ -111,3 +111,24 @@
     object-fit: contain;
     transition: transform 0.2s ease;
   }
+/* Botón de cerrar sesión */
+.logoutButton {
+  padding: 0.8rem 1.5rem;
+  background-color: #dc3545; /* Color rojo para indicar acción de salir */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1rem;
+}
+
+.logoutButton:hover {
+  background-color: #c82333; /* Oscurecer el rojo al pasar el mouse */
+}
+
+.logoutButton:active {
+  transform: scale(0.98); /* Animación de clic */
+}

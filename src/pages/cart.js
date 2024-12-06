@@ -43,11 +43,19 @@ export default function Cart() {
               </div>
               <div className="product-price">${item.precio}</div>
               <div className="product-quantity">
-                <button onClick={() => updateItemQuantity(item.nombre, item.cantidad - 1)}>
+                <button
+                  onClick={() =>
+                    item.cantidad > 1
+                      ? updateItemQuantity(item.nombre, item.cantidad - 1)
+                      : removeFromCart(item.nombre) // Elimina si la cantidad es menor a 1
+                  }
+                >
                   -
                 </button>
                 <span>{item.cantidad}</span>
-                <button onClick={() => updateItemQuantity(item.nombre, item.cantidad + 1)}>
+                <button
+                  onClick={() => updateItemQuantity(item.nombre, item.cantidad + 1)}
+                >
                   +
                 </button>
               </div>

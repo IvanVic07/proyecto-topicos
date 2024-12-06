@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ref, get, child } from "firebase/database"; // Firebase funciones
 import database from "../firebaseConfig"; // Configuración de Firebase
 import { useRouter } from "next/router"; // Hook para redirección
@@ -8,26 +8,41 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado para verificar si el usuario está logueado
   const router = useRouter(); // Hook de redirección
+
+  useEffect(() => {
+    // Verifica si hay un usuario en localStorage
+    const storedUser = localStorage.getItem("loggedInUser");
+    if (storedUser) {
+      setIsLoggedIn(true);
+      router.push("/"); // Redirige automáticamente si ya está logueado
+    }
+  }, [router]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-
+  
     if (!email || !password) {
       setError("Por favor completa todos los campos.");
       return;
     }
-
+  
     try {
       // Referencia a la base de datos
       const dbRef = ref(database);
-
+  
       // Verifica si el email y contraseña existen
       const snapshot = await get(child(dbRef, `users/${email.replace(/\./g, "_")}`));
       if (snapshot.exists()) {
         const userData = snapshot.val();
+        console.log("Datos obtenidos del usuario:", userData); // Para verificar los datos
+  
         if (userData.password === password) {
+          // Guarda el usuario en localStorage
+          localStorage.setItem("loggedInUser", JSON.stringify(userData));
+          setIsLoggedIn(true); // Cambia el estado de autenticación
           alert("¡Inicio de sesión exitoso!");
           router.push("/"); // Redirige a la página principal
         } else {
@@ -41,6 +56,25 @@ export default function Login() {
       setError("Ocurrió un error. Intenta nuevamente.");
     }
   };
+  
+  const handleLogout = () => {
+    // Limpia el localStorage y actualiza el estado
+    localStorage.removeItem("loggedInUser");
+    setIsLoggedIn(false);
+    router.push("/Login"); // Redirige al login
+  };
+
+  if (isLoggedIn) {
+    // Muestra un mensaje si ya está logueado
+    return (
+      <div className={styles.loggedInContainer}>
+        <h2>Ya has iniciado sesión</h2>
+        <button onClick={handleLogout} className={styles.logoutBtn}>
+          Cerrar sesión
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.loginContainer}>
