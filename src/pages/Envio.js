@@ -1,18 +1,24 @@
-import { useContact } from '../context/ContactContext';
-import { usePrice } from '../context/PriceContext';  // Importa el hook para acceder al precio
-import { useRouter } from 'next/router';  
+import { useContact } from "../context/ContactContext";
+import { usePrice } from "../context/PriceContext";
+import { useCart } from "../context/CartContext"; // Importa el contexto del carrito
+import { useRouter } from "next/router";
 
 export default function Envio() {
   const { contactData } = useContact();
-  const { price } = usePrice();  // Obtener el precio del contexto
-  const router = useRouter();  
+  const { price } = usePrice(); // Aunque tienes un contexto de precio, lo reemplazaremos con el cálculo del carrito
+  const { cartItems } = useCart(); // Obtén los productos del carrito
+  const router = useRouter();
 
   const handleBackToContact = () => {
-    router.push('/Contact');  
+    router.push("/Contact");
   };
 
   const handleGoToPayment = () => {
-    router.push('/FormaPago');  
+    router.push("/FormaPago");
+  };
+
+  const calcularSubtotal = () => {
+    return cartItems.reduce((total, item) => total + item.precio * item.cantidad, 0);
   };
 
   return (
@@ -26,9 +32,9 @@ export default function Envio() {
 
       {/* Breadcrumb */}
       <nav className="breadcrumb">
-        <a href="/cart">Carrito</a> {'>'}
-        <a href="/details">Detalles</a> {'>'}
-        <span>Envío</span> {'>'}
+        <a href="/cart">Carrito</a> {" > "}
+        <a href="/details">Detalles</a> {" > "}
+        <span>Envío</span> {" > "}
         <span>Pago</span>
       </nav>
 
@@ -39,8 +45,8 @@ export default function Envio() {
           <div className="info-box">
             <h3>Contacto</h3>
             <div className="info-details">
-              <p>Email: <span>{contactData.email || 'No especificado'}</span></p>
-              <a href="/contact" className="edit-link">Editar</a>
+              <p>Email: <span>{contactData.email || "No especificado"}</span></p>
+              <a href="/Contact" className="edit-link">Editar</a>
             </div>
           </div>
 
@@ -60,7 +66,7 @@ export default function Envio() {
               <p>
                 {contactData.municipio}, {contactData.region}
               </p>
-              <a href="/contact" className="edit-link">Editar</a>
+              <a href="/Contact" className="edit-link">Editar</a>
             </div>
           </div>
 
@@ -78,16 +84,19 @@ export default function Envio() {
         <div className="envio-right">
           <div className="order-summary">
             <h3>Resumen del Pedido</h3>
-            <div className="order-item">
-              <img src="/product.jpg" alt="Producto" className="product-image" />
-              <div>
-                <p>Producto: Moonday for 80m</p>
-                <p>Precio: <strong>${price}</strong></p>  {/* Mostrar el precio del contexto */}
+            {cartItems.map((item, index) => (
+              <div key={index} className="order-item">
+                <img src={item.imagen} alt={item.nombre} className="product-image" />
+                <div>
+                  <p>Producto: {item.nombre}</p>
+                  <p>Cantidad: {item.cantidad}</p>
+                  <p>Precio: <strong>${item.precio * item.cantidad}</strong></p>
+                </div>
               </div>
-            </div>
+            ))}
             <div className="summary-line">
               <span>Subtotal:</span>
-              <span>${price}</span>
+              <span>${calcularSubtotal()}</span>
             </div>
             <div className="summary-line">
               <span>Envío:</span>
@@ -95,7 +104,7 @@ export default function Envio() {
             </div>
             <div className="summary-line total">
               <span>Total:</span>
-              <span><strong>${price}</strong></span>
+              <span><strong>${calcularSubtotal()}</strong></span>
             </div>
           </div>
         </div>

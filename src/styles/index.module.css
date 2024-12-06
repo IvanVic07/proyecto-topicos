@@ -220,4 +220,35 @@
   .newsletter-form button:hover {
     background:  #66e76a;
   }
+  .productoActions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .addToCartButton {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .addToCartButton:hover {
+    background-color: #45a049;
+  }
+  
+  .viewMoreButton {
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .viewMoreButton:hover {
+    background-color: #1976d2;
+  }
   

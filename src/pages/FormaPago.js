@@ -1,42 +1,53 @@
-import { useContact } from '../context/ContactContext';
-import { usePrice } from '../context/PriceContext';  // Asegúrate de tener el contexto del precio
-import { useRouter } from 'next/router';
-import { useEffect, useRef } from 'react';
+import { useContact } from "../context/ContactContext";
+import { useCart } from "../context/CartContext"; // Importa el contexto del carrito
+import { useRouter } from "next/router";
+import { useEffect, useRef } from "react";
 
 export default function FormaPago() {
   const { contactData } = useContact();
-  const { price } = usePrice();  // Obtener el precio desde el contexto
+  const { cartItems } = useCart(); // Accede a los productos del carrito
   const router = useRouter();
-  const paypalButtonContainerRef = useRef(null);  // Referencia al contenedor de PayPal
+  const paypalButtonContainerRef = useRef(null); // Referencia al contenedor de PayPal
 
-  const handleBackToEnvio = () => {
-    router.push('/Envio');
+  // Calcula el subtotal del carrito
+  const calcularSubtotal = () => {
+    return cartItems.reduce((total, item) => total + item.precio * item.cantidad, 0);
   };
 
   useEffect(() => {
+    const total = calcularSubtotal(); // Calcula el total dinámico
+
     if (window.paypal && paypalButtonContainerRef.current) {
       window.paypal.Buttons({
         createOrder: (data, actions) => {
           return actions.order.create({
-            purchase_units: [{
-              amount: {
-                value: price.toString(),  // Usar el precio del contexto
+            purchase_units: [
+              {
+                amount: {
+                  value: total.toFixed(2), // Usar el total dinámico
+                },
               },
-            }],
+            ],
           });
         },
         onApprove: (data, actions) => {
-          return actions.order.capture().then(function(details) {
-            alert('Pago realizado con éxito');
-            router.push(`/ConfirmacionPedido?amount=${details.purchase_units[0].amount.value}`);
+          return actions.order.capture().then(function (details) {
+            alert("Pago realizado con éxito");
+            router.push(
+              `/ConfirmacionPedido?amount=${details.purchase_units[0].amount.value}`
+            );
           });
         },
         onError: (err) => {
-          alert('Hubo un error con el pago: ' + err);
-        }
-      }).render(paypalButtonContainerRef.current);  // Renderiza el botón dentro de su contenedor
+          alert("Hubo un error con el pago: " + err);
+        },
+      }).render(paypalButtonContainerRef.current); // Renderiza el botón dentro de su contenedor
     }
-  }, [price]);
+  }, [cartItems, router]); // Ejecuta el efecto si cambian los productos o el router
+
+  const handleBackToEnvio = () => {
+    router.push("/Envio");
+  };
 
   return (
     <div className="formapago-container">
@@ -49,9 +60,9 @@ export default function FormaPago() {
 
       {/* Breadcrumb */}
       <nav className="breadcrumb">
-        <a href="/cart">Carrito</a> {'>'}
-        <a href="/details">Detalles</a> {'>'}
-        <a href="/envio">Envío</a> {'>'}
+        <a href="/cart">Carrito</a> {" > "}
+        <a href="/details">Detalles</a> {" > "}
+        <a href="/envio">Envío</a> {" > "}
         <span>Pago</span>
       </nav>
 
@@ -60,8 +71,12 @@ export default function FormaPago() {
         <div className="info-box">
           <h3 className="section-title">Información de Contacto</h3>
           <div className="info-details">
-            <p><strong>Email:</strong> {contactData.email || 'No especificado'}</p>
-            <a href="/contact" className="edit-link">Editar</a>
+            <p>
+              <strong>Email:</strong> {contactData.email || "No especificado"}
+            </p>
+            <a href="/contact" className="edit-link">
+              Editar
+            </a>
           </div>
         </div>
 
@@ -69,27 +84,49 @@ export default function FormaPago() {
         <div className="info-box">
           <h3 className="section-title">Dirección de Envío</h3>
           <div className="info-details">
-            <p><strong>Nombre:</strong> {contactData.nombre} {contactData.apellidos}</p>
-            <p><strong>Dirección:</strong> {contactData.direccion}, {contactData.numeroExterior}</p>
-            <p><strong>Ciudad:</strong> {contactData.ciudad}, <strong>Código Postal:</strong> {contactData.codigoPostal}</p>
-            <p><strong>Municipio:</strong> {contactData.municipio}, <strong>Región:</strong> {contactData.region}</p>
-            <a href="/contact" className="edit-link">Editar</a>
+            <p>
+              <strong>Nombre:</strong> {contactData.nombre} {contactData.apellidos}
+            </p>
+            <p>
+              <strong>Dirección:</strong> {contactData.direccion},{" "}
+              {contactData.numeroExterior}
+            </p>
+            <p>
+              <strong>Ciudad:</strong> {contactData.ciudad},{" "}
+              <strong>Código Postal:</strong> {contactData.codigoPostal}
+            </p>
+            <p>
+              <strong>Municipio:</strong> {contactData.municipio},{" "}
+              <strong>Región:</strong> {contactData.region}
+            </p>
+            <a href="/contact" className="edit-link">
+              Editar
+            </a>
           </div>
         </div>
 
         {/* Resumen del Pedido */}
         <div className="formapago-summary">
           <h3 className="section-title">Resumen del Pedido</h3>
-          <div className="order-item">
-            <img src="/product.jpg" alt="Producto" className="product-image" />
-            <div>
-              <p><strong>Producto:</strong> Moonday for 80m</p>
-              <p><strong>Precio:</strong> ${price}</p> {/* Usamos el precio dinámico */}
+          {cartItems.map((item, index) => (
+            <div key={index} className="order-item">
+              <img src={item.imagen} alt={item.nombre} className="product-image" />
+              <div>
+                <p>
+                  <strong>Producto:</strong> {item.nombre}
+                </p>
+                <p>
+                  <strong>Cantidad:</strong> {item.cantidad}
+                </p>
+                <p>
+                  <strong>Precio:</strong> ${item.precio * item.cantidad}
+                </p>
+              </div>
             </div>
-          </div>
+          ))}
           <div className="summary-line">
             <span>Subtotal:</span>
-            <span>${price}</span> {/* Usamos el precio dinámico */}
+            <span>${calcularSubtotal()}</span>
           </div>
           <div className="summary-line">
             <span>Envío:</span>
@@ -97,12 +134,18 @@ export default function FormaPago() {
           </div>
           <div className="summary-line total">
             <span>Total:</span>
-            <span><strong>${price}</strong></span> {/* Usamos el precio dinámico */}
+            <span>
+              <strong>${calcularSubtotal()}</strong>
+            </span>
           </div>
         </div>
 
         {/* Botón de PayPal */}
-        <div id="paypal-button-container" ref={paypalButtonContainerRef} className="formapago-buttons"></div>
+        <div
+          id="paypal-button-container"
+          ref={paypalButtonContainerRef}
+          className="formapago-buttons"
+        ></div>
 
         {/* Botón de Regreso */}
         <div className="formapago-buttons">
