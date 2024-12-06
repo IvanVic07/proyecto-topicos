@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import Image from "next/image";
 import logo from "IvanVic07/proyecto-topicos/public/logo.png"; // Asegúrate de tener esta imagen en la carpeta `/public`
-import styles from "styles/ProductDetails.css"; // Tus estilos
+import "./ProductDetail.css"; // Tus estilos
 
 const ProductDetail = () => {
   const router = useRouter();
