@@ -1,31 +1,59 @@
-import { useState } from 'react';
-import { useContact } from '../context/ContactContext';
-import { useRouter } from 'next/router';
+import { useState, useEffect } from "react";
+import { useContact } from "../context/ContactContext";
+import { useRouter } from "next/router";
+import { ref, update } from "firebase/database"; // Importa Firebase
+import database from "../firebaseConfig"; // Configuración de Firebase
 
 export default function Contact() {
   const { setContactData } = useContact();
   const router = useRouter(); // Usamos el hook useRouter para redirección
+  const [loggedInUser, setLoggedInUser] = useState(null); // Usuario logueado
   const [formData, setFormData] = useState({
-    email: '',
-    nombre: '',
-    apellidos: '',
-    direccion: '',
-    numeroExterior: '',
-    ciudad: '',
-    codigoPostal: '',
-    municipio: '',
-    region: '',
+    email: "",
+    nombre: "",
+    apellidos: "",
+    direccion: "",
+    numeroExterior: "",
+    ciudad: "",
+    codigoPostal: "",
+    municipio: "",
+    region: "",
   });
+
+  useEffect(() => {
+    // Obtiene el usuario logueado desde localStorage
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (user) {
+      setLoggedInUser(user);
+      setFormData({ ...formData, email: user.email }); // Precarga el email del usuario
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!loggedInUser) {
+      alert("Debe iniciar sesión para guardar la información.");
+      return;
+    }
+
     setContactData(formData); // Guarda los datos en el contexto
-    router.push('/Envio'); // Redirige a la página de Envío.js
+
+    try {
+      // Actualiza la información del usuario en la base de datos
+      const userKey = loggedInUser.email.replace(/\./g, "_"); // Reemplaza puntos en el email
+      const userRef = ref(database, `users/${userKey}/contactInfo`);
+      await update(userRef, formData); // Guarda los datos bajo el nodo contactInfo
+      alert("Información de contacto guardada con éxito.");
+      router.push("/Envio"); // Redirige a la página de Envío.js
+    } catch (error) {
+      console.error("Error al guardar la información:", error);
+      alert("Hubo un error al guardar la información. Intenta de nuevo.");
+    }
   };
 
   return (

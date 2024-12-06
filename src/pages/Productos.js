@@ -1,10 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { useRouter } from "next/router";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
 import { useCart } from "../context/CartContext"; // Usa el contexto del carrito
 import styles from "../styles/Productos.module.css";
-import { useRouter } from "next/router";
 
 export default function Productos() {
   const { addToCart } = useCart(); // Función para añadir productos al carrito
@@ -63,7 +62,11 @@ export default function Productos() {
   const handleViewDetails = (producto) => {
     router.push({
       pathname: `/producto/${producto.id}`,
-      query: { nombre: producto.nombre, precio: producto.precio, imagen: producto.imagen },
+      query: {
+        nombre: producto.nombre,
+        precio: producto.precio,
+        imagen: producto.imagen,
+      },
     });
   };
 
@@ -71,16 +74,18 @@ export default function Productos() {
     <div className={styles.container}>
       {/* Navbar */}
       <header className={styles.navbar}>
-        <Link href="/">
-          <Image src="/logo.png" alt="Logo de DifuAura" width={120} height={40} />
-        </Link>
+        <div className={styles.logo}>
+          <Link href="/">
+            <img src="/logo.png" alt="Logo de DifuAura" width={120} height={40} />
+          </Link>
+        </div>
         <nav>
           <ul className={styles.navLinks}>
             <li>
               <Link href="/Productos">Productos</Link>
             </li>
             <li>
-              <a href="/Blog">Aprende</a>
+              <Link href="/Blog">Aprende</Link>
             </li>
           </ul>
         </nav>

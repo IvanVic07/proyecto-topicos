@@ -3,21 +3,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;  
-  background-color: white;  
-  width: 100%; 
-  position: fixed; 
-  top: 0; 
-  left: 0;  
-  z-index: 1000; 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  padding: 1rem 2rem;
+  background-color: white;
   width: 100%;
-  height: 60px;  
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 60px;
 }
 
 /* Logo */
 .navbar .logo img {
-  height: 40px;  /* Ajusta el tamaño del logo */
+  height: 40px; /* Ajusta el tamaño del logo */
   object-fit: contain;
 }
 
@@ -30,7 +29,7 @@
 
 .navLinks a {
   text-decoration: none;
-  color: black; /* Color de texto blanco para contraste */
+  color: black; /* Color de texto negro */
   font-size: 1rem;
 }
 
@@ -38,12 +37,23 @@
 .navIcons .icon {
   font-size: 1.5rem;
   margin-left: 1rem;
-  color: #fff;  /* Color de los iconos */
+  color: #000; /* Cambiado a negro para mayor visibilidad */
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.icon:hover {
+  color: #4caf50; /* Cambia a verde al pasar el mouse */
+  transform: scale(1.1); /* Efecto de zoom */
+}
+
+.icon:active {
+  transform: scale(0.9); /* Efecto de clic */
 }
 
 /* Contenedor de los productos */
 .container {
-  margin-top: 60px;  /* Asegura que el contenido de productos no quede oculto detrás del navbar */
+  margin-top: 60px; /* Asegura que el contenido de productos no quede oculto detrás del navbar */
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
@@ -100,6 +110,7 @@
   font-size: 1.5rem;
   color: #4caf50;
 }
+
 /* Contenedor de acciones (botones) */
 .actions {
   display: flex;
@@ -109,7 +120,7 @@
 
 /* Botón de añadir al carrito */
 .addToCartButton {
-  background-color: #4caf50; /* Verde */
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -120,16 +131,16 @@
 }
 
 .addToCartButton:hover {
-  background-color: #45a049; /* Verde más oscuro */
+  background-color: #45a049;
 }
 
 .addToCartButton:active {
-  transform: scale(0.98); /* Efecto de clic */
+  transform: scale(0.98);
 }
 
 /* Botón de ver más detalles */
 .detailsButton {
-  background-color: #007bff; /* Azul */
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
@@ -140,9 +151,9 @@
 }
 
 .detailsButton:hover {
-  background-color: #0056b3; /* Azul más oscuro */
+  background-color: #0056b3;
 }
 
 .detailsButton:active {
-  transform: scale(0.98); /* Efecto de clic */
+  transform: scale(0.98);
 }
