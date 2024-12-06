@@ -5,7 +5,7 @@ const PriceContext = createContext();
 
 // Componente proveedor para el contexto
 export const PriceProvider = ({ children }) => {
-  const [price, setPrice] = useState(100);  // El precio inicial, lo puedes ajustar según el producto
+  const [price, setPrice] = useState(100);  
 
   return (
     <PriceContext.Provider value={{ price, setPrice }}>

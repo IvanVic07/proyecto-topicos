@@ -35,6 +35,41 @@ export default function Productos() {
           imagen:
             "https://aromaria.mx/cdn/shop/products/goodN_1000x.jpg?v=1732143423",
         },
+        {
+          id: 4,
+          nombre: "Menta",
+          precio: 900,
+          imagen:
+            "https://aromaria.mx/cdn/shop/products/FrozenV_1000x.jpg?v=1732143306",
+        },
+        {
+          id: 5,
+          nombre: "Bergamota",
+          precio: 900,
+          imagen:
+            "https://aromaria.mx/cdn/shop/products/Behappy_6b5318eb-b7b7-46eb-94ce-2042e587534a_1000x.jpg?v=1732143046",
+        },
+        {
+          id: 6,
+          nombre: "Acordes Cítricos",
+          precio: 900,
+          imagen:
+            "https://aromaria.mx/cdn/shop/products/MrBig_196b4912-69dc-4e7d-9dfb-e97ef317ff02_1000x.jpg?v=1732143473",
+        },
+        {
+          id: 7,
+          nombre: "Canela-Clavo",
+          precio: 900,
+          imagen:
+            "https://aromaria.mx/cdn/shop/products/sweetcinnamonmemories_1000x.jpg?v=1637692038",
+        },
+        {
+          id: 8,
+          nombre: "Jazmín",
+          precio: 900,
+          imagen:
+            "https://aromaria.mx/cdn/shop/products/Palmera_1200x1200.jpg?v=1732143543",
+        },
       ],
     },
     {
@@ -42,18 +77,32 @@ export default function Productos() {
       descripcion: "Diseñados por Difuaura",
       items: [
         {
-          id: 4,
+          id: 9,
           nombre: "Humidificador para sala",
           precio: 18000,
           imagen:
             "https://aromaria.mx/cdn/shop/products/HappyHome2_1000x.png?v=1676500614",
         },
         {
-          id: 5,
+          id: 10,
           nombre: "Humidificador para recamara",
           precio: 6000,
           imagen:
             "https://aromaria.mx/cdn/shop/files/2022_Happy_Place_1000x.png?v=1726082155",
+        },
+        {
+          id: 11,
+          nombre: "Combo doble",
+          precio: 13200,
+          imagen:
+            "https://aromaria.mx/cdn/shop/products/HappyPlaces_1000x.jpg?v=1668739945",
+        },
+        {
+          id: 12,
+          nombre: "Humidificador para sala y recamara",
+          precio: 25500,
+          imagen:
+            "https://aromaria.mx/cdn/shop/files/HAPY_HOME_Y_HAPPY_PLACE_1000x.png?v=1730483756",
         },
       ],
     },
@@ -120,12 +169,6 @@ export default function Productos() {
                     onClick={() => addToCart(producto)}
                   >
                     Añadir al carrito
-                  </button>
-                  <button
-                    className={styles.detailsButton}
-                    onClick={() => handleViewDetails(producto)}
-                  >
-                    Ver más
                   </button>
                 </div>
               </div>

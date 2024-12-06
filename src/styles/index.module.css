@@ -1,98 +1,113 @@
 /* General Styles */
 .body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
 }
 
 /* Navbar */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
 }
 
 .navLinks {
-    display: flex;
-    list-style: none;
-    gap: 1rem;
+  display: flex;
+  list-style: none;
+  gap: 1rem;
 }
 
 .navLinks a {
-    text-decoration: none;
-    color: #333;
+  text-decoration: none;
+  color: #333;
 }
 
 .navIcons .icon {
-    font-size: 1.5rem;
-    margin-left: 1rem;
+  font-size: 1.5rem;
+  margin-left: 1rem;
 }
 
 /* Hero Section */
 .hero {
   position: relative;
-  height: 65vh; /* Mantén esta altura, pero puedes ajustarla si lo necesitas */
+  height: 65vh;
   background: url('https://margalisteo.com/wp-content/uploads/2013/03/¿Porque-usar-aromaterapia-en-la-piel.jpeg') center 80%/cover no-repeat;
-
 }
 
-
 .heroOverlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 2rem;
-    border-radius: 0.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border-radius: 0.5rem;
 }
 
 .heroTitle {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .heroButton {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
 }
-
-
 
 /* Productos Section */
 .productos {
-    padding: 2rem;
-    text-align: center;
-    background: #f9f9f9;
+  padding: 2rem;
+  text-align: center;
+  background: #f9f9f9;
 }
 
 .productosGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 .productoCard {
-    background: white;
-    padding: 1rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  background: white;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .productoCard img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.productoActions {
+  display: flex;
+  justify-content: center; /* Centra el botón */
+  margin-top: 10px;
+}
+
+.addToCartButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addToCartButton:hover {
+  background-color: #45a049;
 }
 
 /* Beneficios Section */
@@ -106,24 +121,24 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  align-items: center; 
+  align-items: center;
 }
 
 .beneficiosContent h2 {
-  font-size: 2rem; 
-  margin-bottom: 1rem; 
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 .beneficiosContent .subtitulo {
-  font-size: 1.5rem; 
-  color: #4caf50; 
-  margin-bottom: 1rem; 
+  font-size: 1.5rem;
+  color: #4caf50;
+  margin-bottom: 1rem;
 }
 
 .beneficiosContent p {
-  font-size: 1.2rem; 
-  line-height: 1.8; 
-  margin-bottom: 1.5rem; 
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
 }
 
 .beneficiosButton {
@@ -131,124 +146,110 @@
   color: white;
   border: none;
   padding: 1rem 2rem;
-  font-size: 1.2rem; 
+  font-size: 1.2rem;
   border-radius: 5px;
   cursor: pointer;
-  position: relative; 
-  display: block; 
-  margin: 1rem auto 0; 
+  position: relative;
+  display: block;
+  margin: 1rem auto 0;
   text-align: center;
 }
 
 .beneficiosButton:hover {
-  background:  #66e76a;
+  background: #66e76a;
 }
 
-
-
 .beneficios img {
-    width: 100%;
-    border-radius: 5px;
+  width: 100%;
+  border-radius: 5px;
 }
 
 /* Cómo funciona Section */
 .como-funciona {
-    padding: 2rem;
-    background: #f9f9f9;
-    text-align: center;
-  }
-  
-  .funciona-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-  
-  .funciona-item {
-    background: white;
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .funciona-item img {
-    width: 300px;
-    margin-bottom: 1rem;
-  }
-  
-  .funciona-item h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .funciona-item p {
-    font-size: 1rem;
-    color: #555;
-  }
-  
-  /* Newsletter Section */
-  .newsletter {
-    padding: 2rem;
-    background: black;
-    color: white;
-    text-align: center;
-  }
-  
-  .newsletter-content h2 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    color: white;
-  }
-  
-  .newsletter-content p {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-  }
-      
-  .newsletter-form button {
-    padding: 0.8rem 1.5rem;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .newsletter-form button:hover {
-    background:  #66e76a;
-  }
-  .productoActions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
-  .addToCartButton {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .addToCartButton:hover {
-    background-color: #45a049;
-  }
-  
-  .viewMoreButton {
-    background-color: #2196f3;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .viewMoreButton:hover {
-    background-color: #1976d2;
-  }
-  
+  padding: 2rem;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.funciona-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.funciona-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.funciona-item img {
+  width: 300px;
+  margin-bottom: 1rem;
+}
+
+.funciona-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.funciona-item p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Newsletter Section */
+.newsletter {
+  padding: 2rem;
+  background: black;
+  color: white;
+  text-align: center;
+}
+
+.newsletter-content h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.newsletter-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.newsletter-form button {
+  padding: 0.8rem 1.5rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.newsletter-form button:hover {
+  background: #66e76a;
+}
+
+.cartIcon {
+  position: relative;
+}
+
+.cartCount {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+}

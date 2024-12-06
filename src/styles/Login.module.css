@@ -39,8 +39,19 @@
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #ddd; /* Borde gris claro */
   border-radius: 5px;
+  background-color: #fff; /* Fondo blanco */
+  color: #333; /* Texto oscuro */
+  font-size: 14px; /* Tamaño de texto */
+  box-shadow: none; /* Elimina sombras predeterminadas */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inputField:focus {
+  outline: none; /* Elimina el contorno predeterminado */
+  border-color: #4caf50; /* Cambia el borde al verde */
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Resaltado verde sutil */
 }
 
 /* Botón de enviar */
@@ -54,10 +65,16 @@
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .submitBtn:hover {
   background-color: #45a049;
+  transform: scale(1.02); /* Aumenta ligeramente el tamaño al pasar el mouse */
+}
+
+.submitBtn:active {
+  transform: scale(0.98); /* Reduce ligeramente el tamaño al hacer clic */
 }
 
 /* Texto de crear cuenta */
@@ -71,11 +88,15 @@
 .signupText a {
   color: #4caf50;
   text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 .signupText a:hover {
   text-decoration: underline;
+  color: #45a049;
 }
+
+/* Mensaje de error */
 .error {
   color: red;
   font-size: 14px;

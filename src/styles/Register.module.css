@@ -83,8 +83,19 @@
 .formInput {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #ddd; /* Borde gris claro */
   border-radius: 5px;
+  background-color: #fff; /* Fondo blanco */
+  color: #333; /* Texto oscuro */
+  font-size: 14px; /* Tamaño de texto */
+  box-shadow: none; /* Elimina sombras predeterminadas */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formInput:focus {
+  outline: none; /* Elimina el contorno predeterminado */
+  border-color: #4caf50; /* Cambia el borde al verde */
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Resaltado verde sutil */
 }
 
 .terms {
@@ -114,10 +125,16 @@
   margin-bottom: 10px;
   font-size: 16px;
   font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .registerBtn:hover {
   background-color: #45a049;
+  transform: scale(1.02);
+}
+
+.registerBtn:active {
+  transform: scale(0.98);
 }
 
 .loginBtn {
@@ -130,8 +147,14 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .loginBtn:hover {
   background-color: #f1f1f1;
+  transform: scale(1.02);
+}
+
+.loginBtn:active {
+  transform: scale(0.98);
 }

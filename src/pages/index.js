@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router"; // Importa el hook useRouter
+import { useRouter } from "next/router";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
-import { useCart } from "../context/CartContext"; // Usa el contexto del carrito
+import { useCart } from "../context/CartContext";
 import styles from "../styles/index.module.css";
 
 const Index = () => {
-  const router = useRouter(); // Inicializa el hook de navegación
-  const { addToCart } = useCart(); // Función para añadir productos al carrito
-  const [loggedInUser, setLoggedInUser] = useState(null); // Estado para verificar el usuario autenticado
+  const router = useRouter();
+  const { addToCart } = useCart();
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   useEffect(() => {
-    // Verifica si hay un usuario autenticado
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
     if (user) {
       setLoggedInUser(user);
@@ -19,7 +18,7 @@ const Index = () => {
   }, []);
 
   const handleHeroButtonClick = () => {
-    router.push("/Productos"); // Navega a la página /Productos
+    router.push("/Productos");
   };
 
   const productos = [
@@ -57,7 +56,6 @@ const Index = () => {
 
   return (
     <div>
-      {/* Navbar */}
       <header className={styles.navbar}>
         <div className={styles.logo}>DifuAura</div>
         <nav>
@@ -80,22 +78,17 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroOverlay}>
           <div>
             <h1 className={styles.heroTitle}>DifuAura</h1>
-            <button
-              className={styles.heroButton}
-              onClick={handleHeroButtonClick} // Llama a la función para redirigir
-            >
+            <button className={styles.heroButton} onClick={handleHeroButtonClick}>
               Descubre nuestra colección
             </button>
           </div>
         </div>
       </section>
 
-      {/* Productos Section */}
       <main>
         <section id="productos" className={styles.productos}>
           <h2>Productos</h2>
@@ -109,16 +102,62 @@ const Index = () => {
                 <div className={styles.productoActions}>
                   <button
                     className={styles.addToCartButton}
-                    onClick={() => addToCart(producto)} // Añade al carrito
+                    onClick={() => addToCart(producto)}
                   >
                     Añadir al carrito
                   </button>
-                  <Link href={`/producto/${index}`}>
-                    <button className={styles.viewMoreButton}>Ver más</button>
-                  </Link>
+                  
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section id="beneficios" className={styles.beneficios}>
+          <div className={styles.beneficiosContent}>
+            <div className={styles.texto}>
+              <h1>Beneficios y más</h1>
+              <p className={styles.subtitulo}>Hecho para ti y tu hogar.</p>
+              <p>
+                Descubre nuestras esencias en aceite y transforma tu bienestar con aromas diseñados para equilibrar cuerpo y mente. 
+                Conoce los beneficios terapéuticos que cada esencia tiene para ofrecerte.
+              </p>
+              <button className={styles.beneficiosButton}>Ver más</button>
+            </div>
+            <div className={styles.imagen}>
+              <img src="https://www.elfinanciero.com.mx/resizer/v2/AIC3U4RJQFDSVDSYBQNVAOUWWM.jpeg?smart=true&auth=f9f9482cc3597d1019c41f9458936ccd859458bc2eed36836ea912e0a88833e0&width=1600&height=900" alt="Beneficios" />
+            </div>
+          </div>
+        </section>
+
+        <section id="como-funciona" className={styles["como-funciona"]}>
+          <h2>¿Cómo funciona?</h2>
+          <div className={styles["funciona-grid"]}>
+            <div className={styles["funciona-item"]}>
+              <img src="https://cdn.leonardo.ai/users/69f11d5d-2537-40df-a914-d95451d5d028/generations/154ba9cd-c940-475e-9ea5-b53a17387373/Leonardo_Phoenix_A_clean_and_modern_digital_illustration_depic_3.jpg" alt="Selecciona un producto" />
+              <h3>Selecciona</h3>
+              <p>Elige entre una variedad de esencias y humidificadores.</p>
+            </div>
+            <div className={styles["funciona-item"]}>
+              <img src="https://cdn.leonardo.ai/users/69f11d5d-2537-40df-a914-d95451d5d028/generations/62d31676-38d9-4ff3-bf6b-7cd3ece1f595/Leonardo_Phoenix_A_clean_and_modern_digital_illustration_depic_2.jpg" alt="Realiza tu pedido" />
+              <h3>Ordena</h3>
+              <p>Agrega tus favoritos al carrito y finaliza tu compra.</p>
+            </div>
+            <div className={styles["funciona-item"]}>
+              <img src="https://cdn.leonardo.ai/users/69f11d5d-2537-40df-a914-d95451d5d028/generations/a9bf1eef-d3a8-47c0-a70b-859a2f962ae4/Leonardo_Phoenix_A_clean_modern_digital_illustration_showing_t_1.jpg" alt="Disfruta" />
+              <h3>Disfruta</h3>
+              <p>Transforma tus espacios con aromas increíbles.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="newsletter" className={styles.newsletter}>
+          <div className={styles["newsletter-content"]}>
+            <h2>Aromas, difusores y humidificadores. ¡El bienestar para tu hogar!</h2>
+            <p>Recibir ofertas exclusivas y novedades.</p>
+            <form className={styles["newsletter-form"]}>
+              <button type="submit">Contactanos</button>
+            </form>
           </div>
         </section>
       </main>
