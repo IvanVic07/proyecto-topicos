@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ShippingForm.css"; // Import the CSS file for styles
+import municipiosData from "./src/Municipios.json"; // Import the municipios JSON file
 
 const ShippingForm = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,24 @@ const ShippingForm = () => {
     region: "",
     saveInfo: false,
   });
+
+  const [states, setStates] = useState([]);
+  const [municipalities, setMunicipalities] = useState([]);
+
+  useEffect(() => {
+    // Load states dynamically from municipios.json
+    const statesFromData = Object.keys(municipiosData);
+    setStates(statesFromData);
+  }, []);
+
+  const handleStateChange = (e) => {
+    const selectedState = e.target.value;
+    setFormData({ ...formData, region: selectedState, municipality: "" });
+
+    // Load municipalities dynamically based on the selected state
+    const municipalitiesForState = municipiosData[selectedState] || [];
+    setMunicipalities(municipalitiesForState);
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -30,7 +49,6 @@ const ShippingForm = () => {
   };
 
   return (
-    
     <div className="container">
       <h2>Contacto</h2>
       <form onSubmit={handleSubmit} className="form">
@@ -95,15 +113,41 @@ const ShippingForm = () => {
 
         <div className="row">
           <div className="inputGroup">
-            <label>Ciudad</label>
-            <input
-              type="text"
-              name="city"
-              value={formData.city}
+            <label>Estado</label>
+            <select
+              name="region"
+              value={formData.region}
+              onChange={handleStateChange}
+              className="input"
+            >
+              <option value="">Seleccione un estado</option>
+              {states.map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="inputGroup">
+            <label>Municipio</label>
+            <select
+              name="municipality"
+              value={formData.municipality}
               onChange={handleChange}
               className="input"
-            />
+              disabled={!municipalities.length}
+            >
+              <option value="">Seleccione un municipio</option>
+              {municipalities.map((municipio) => (
+                <option key={municipio} value={municipio}>
+                  {municipio}
+                </option>
+              ))}
+            </select>
           </div>
+        </div>
+
+        <div className="row">
           <div className="inputGroup">
             <label>Código Postal</label>
             <input
@@ -113,35 +157,6 @@ const ShippingForm = () => {
               onChange={handleChange}
               className="input"
             />
-          </div>
-          <div className="inputGroup">
-            <label>Municipio</label>
-            <select
-              name="municipality"
-              value={formData.municipality}
-              onChange={handleChange}
-              className="input"
-            >
-              <option value="">Seleccione</option>
-              <option value="Municipio1">Municipio 1</option>
-              <option value="Municipio2">Municipio 2</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="inputGroup">
-            <label>Región</label>
-            <select
-              name="region"
-              value={formData.region}
-              onChange={handleChange}
-              className="input"
-            >
-              <option value="">Seleccione</option>
-              <option value="Region1">Región 1</option>
-              <option value="Region2">Región 2</option>
-            </select>
           </div>
         </div>
 

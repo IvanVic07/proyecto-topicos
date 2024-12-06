@@ -1,88 +1,91 @@
+import { useRouter } from "next/router";
 import React from "react";
-import "./ProductDetails.css";
-import productImage from "IvanVic07/proyecto-topicos/public/AromAuraProduct.png"; // Imagen del producto
-import logo from "IvanVic07/proyecto-topicos/public/Screenshot 2024-12-04 203543.png"; // Logo de Difuaura
+import Image from "next/image";
+import logo from "IvanVic07/proyecto-topicos/public/logo.png"; // Asegúrate de tener esta imagen en la carpeta `/public`
+import "./ProductDetail.css"; // Tus estilos
 
-const ProductPage = () => {
+const ProductDetail = () => {
+  const router = useRouter();
+  const { id, nombre, precio, imagen } = router.query; // Obtener datos del producto desde la URL
+
   return (
-    <div className="product-page">
+    <div className={styles.productPage}>
       {/* Encabezado */}
-      <header className="header">
-        <img src={logo} alt="Difuaura Logo" className="logo" />
+      <header className={styles.navbar}>
+        <Image src={logo} alt="Difuaura Logo" width={120} height={40} />
         <nav>
-          <ul>
-            <li>Productos</li>
-            <li>Aprende</li>
-            <li>Contáctanos</li>
+          <ul className={styles.navLinks}>
+            <li>
+              <a href="/Productos">Productos</a>
+            </li>
+            <li>
+              <a href="/Blog">Aprende</a>
+            </li>
           </ul>
         </nav>
-        <div className="icons">
-          <span className="icon">🛒</span>
-          <span className="icon">👤</span>
+        <div className={styles.navIcons}>
+          <span className={styles.icon}>🛒</span>
+          <span className={styles.icon}>👤</span>
         </div>
       </header>
 
-      {/* Contenido del producto */}
-      <main className="product-container">
+      {/* Detalles del producto */}
+      <main className={styles.productContainer}>
         {/* Imagen y descripción */}
-        <div className="product-left">
-          <img src={productImage} alt="Product" className="product-image" />
-          <p className="product-description">
-            All hand-made with natural materials, Humidifics is made for your
-            pleasure moments.
+        <div className={styles.productLeft}>
+          <Image src={imagen} alt={nombre} width={400} height={400} className={styles.productImage} />
+          <p className={styles.productDescription}>
+            Este producto está diseñado para tu bienestar y satisfacción.
           </p>
-          <p className="free-shipping">🚚 FREE SHIPPING</p>
+          <p className={styles.freeShipping}>🚚 Envío gratis</p>
         </div>
 
         {/* Detalles y opciones */}
-        <div className="product-right">
-          <h1>Moonday for 80m²</h1>
-          <p className="price">$10,000</p>
-          <div className="quantity">
-            <label>Quantity</label>
+        <div className={styles.productRight}>
+          <h1>{nombre}</h1>
+          <p className={styles.price}>${precio}</p>
+          <div className={styles.quantity}>
+            <label>Cantidad</label>
             <select>
               <option>1</option>
               <option>2</option>
               <option>3</option>
             </select>
           </div>
-          <button className="add-to-cart">+ Add to cart</button>
+          <button className={styles.addToCart}>Añadir al carrito</button>
 
-          <div className="product-details">
-            <p><strong>Wax:</strong> Top grade soy wax that delivers a smoke-less, consistent burn.</p>
-            <p><strong>Fragrance:</strong> Premium quality ingredients with natural essential oils.</p>
-            <p><strong>Burning Time:</strong> 70-75 hours</p>
-            <p><strong>Dimension:</strong> 10cm x 5cm</p>
-            <p><strong>Weight:</strong> 400g</p>
+          <div className={styles.productDetails}>
+            <p>
+              <strong>Detalles:</strong> Producto artesanal con materiales
+              naturales y diseño único.
+            </p>
+            <p>
+              <strong>Garantía:</strong> 1 año de garantía en defectos de
+              fabricación.
+            </p>
           </div>
         </div>
       </main>
 
       {/* Pie de página */}
-      <footer className="footer">
-        <div className="footer-section">
-          <img src={logo} alt="Difuaura Logo" className="footer-logo" />
-          <p>Aromas, difusores y humidificadores. El bienestar para tu hogar</p>
+      <footer className={styles.footer}>
+        <div className={styles.footerSection}>
+          <Image src={logo} alt="Difuaura Logo" width={120} height={40} />
+          <p>Aromas, difusores y humidificadores. El bienestar para tu hogar.</p>
         </div>
-        <div className="footer-section">
-          <h3>Discovery</h3>
+        <div className={styles.footerSection}>
+          <h3>Descubre más</h3>
           <p>Aromas</p>
           <p>Humidificadores</p>
         </div>
-        <div className="footer-section">
+        <div className={styles.footerSection}>
           <h3>Sobre nosotros</h3>
-          <p>Hub</p>
           <p>Productos</p>
-        </div>
-        <div className="footer-section">
-          <h3>Info</h3>
-          <p>Contáctanos</p>
-          <p>Políticas de privacidad</p>
-          <p>Términos y condiciones</p>
+          <p>Contacto</p>
         </div>
       </footer>
     </div>
   );
 };
 
-export default ProductPage;
+export default ProductDetail;
