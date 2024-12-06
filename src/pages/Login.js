@@ -1,43 +1,75 @@
-import React from "react";
-import Link from "next/link"; 
-import Image from "next/image"; 
-import styles from "../styles/Login.module.css"; 
+import React, { useState } from "react";
+import { ref, get, child } from "firebase/database"; // Firebase funciones
+import database from "../firebaseConfig"; // Configuración de Firebase
+import { useRouter } from "next/router"; // Hook para redirección
+import styles from "../styles/Login.module.css";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter(); // Hook de redirección
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    if (!email || !password) {
+      setError("Por favor completa todos los campos.");
+      return;
+    }
+
+    try {
+      // Referencia a la base de datos
+      const dbRef = ref(database);
+
+      // Verifica si el email y contraseña existen
+      const snapshot = await get(child(dbRef, `users/${email.replace(/\./g, "_")}`));
+      if (snapshot.exists()) {
+        const userData = snapshot.val();
+        if (userData.password === password) {
+          alert("¡Inicio de sesión exitoso!");
+          router.push("/"); // Redirige a la página principal
+        } else {
+          setError("Contraseña incorrecta.");
+        }
+      } else {
+        setError("Usuario no encontrado. Por favor regístrate primero.");
+      }
+    } catch (err) {
+      console.error("Error al iniciar sesión:", err);
+      setError("Ocurrió un error. Intenta nuevamente.");
+    }
+  };
+
   return (
     <div className={styles.loginContainer}>
-      <div className={styles.imageSection}>
-        <Image 
-          src="/Screenshot 2024-12-04 203543.png" 
-          alt="Decorative"
-          className={styles.loginImage}
-          width={500} 
-          height={500}
-        />
-      </div>
       <div className={styles.formSection}>
-        <div className={styles.logoContainer}>
-          <Image 
-            src="/Screenshot 2024-12-04 203543.png" // Ruta de la imagen en la carpeta 'public'
-            alt="Logo"
-            className={styles.logo}
-            width={150} // Ajusta el tamaño de la imagen
-            height={150} // Ajusta el tamaño de la imagen
+        <h2 className={styles.title}>Iniciar sesión en tu cuenta</h2>
+        {error && <p className={styles.error}>{error}</p>}
+        <form className={styles.form} onSubmit={handleLogin}>
+          <label htmlFor="email" className={styles.formLabel}>Correo electrónico</label>
+          <input
+            id="email"
+            className={styles.inputField}
+            type="email"
+            placeholder="Ej. usuario@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-        </div>
-        <h2 className={styles.title}>Login to your Account</h2>
-        <button className={styles.googleLogin}>Continue with Google</button>
-        <p className={styles.orDivider}>or Sign in with Email</p>
-        <form>
-          <label className={styles.formLabel}>Email</label>
-          <input className={styles.inputField} type="email" placeholder="mail@website.com" />
-          
-          <label className={styles.formLabel}>Password</label>
-          <input className={styles.inputField} type="password" placeholder="••••••••" />
+          <label htmlFor="password" className={styles.formLabel}>Contraseña</label>
+          <input
+            id="password"
+            className={styles.inputField}
+            type="password"
+            placeholder="••••••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className={styles.submitBtn} type="submit">Iniciar sesión</button>
         </form>
-        <button className={styles.googleLogin}>Inicia sesion</button>
-        <p className={styles.signupText}>
-          No tienes una cuenta? <Link href="/">Create an account</Link>
+        <p className={styles.registerText}>
+          ¿No tienes una cuenta? <a href="/Register" className={styles.registerLink}>Regístrate aquí</a>
         </p>
       </div>
     </div>

@@ -4,7 +4,8 @@ import '../styles/contact.css';
 import '../styles/envio.css';
 import '../styles/formapago.css';
 import '../styles/confirmacionpedido.css';
-import "../styles/Register.css";
+import "../styles/Register.module.css";
+
 import "../styles/ProductDetails.css"
 import "../styles/ShippingForm.css"
 import { PriceProvider } from "../context/PriceContext";

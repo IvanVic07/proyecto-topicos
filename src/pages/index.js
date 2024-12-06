@@ -22,7 +22,7 @@ const Index = () => {
     </ul>
   </nav>
   <div className={styles.navIcons}>
-    <Link href="/Perfil">
+    <Link href="/Register">
       <FaUser className={styles.icon} aria-label="Perfil de usuario" />
     </Link>
     <Link href="/cart">
