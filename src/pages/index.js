@@ -8,26 +8,29 @@ const Index = () => {
   return (
     <div>
       {/* Navbar */}
-      <header className={styles.navbar}>
-        <div className={styles.logo}>DifuAura</div>
-        <nav>
-          <ul className={styles.navLinks}>
-            <li>
-              <Link href="/Productos">Productos</Link>
-            </li>
-            <li>
-              <a href="#aprende">Aprende</a>
-            </li>
-            <li>
-            <Link href="/Contact">Contactanos</Link>
-            </li>
-          </ul>
-        </nav>
-        <div className={styles.navIcons}>
-          <FaUser className={styles.icon} aria-label="Perfil de usuario" />
-          <FaShoppingCart className={styles.icon} aria-label="Carrito de compras" />
-        </div>
-      </header>
+
+<header className={styles.navbar}>
+  <div className={styles.logo}>DifuAura</div>
+  <nav>
+    <ul className={styles.navLinks}>
+      <li>
+        <Link href="/Productos">Productos</Link>
+      </li>
+      <li>
+        <a href="/Blog">Aprende</a>
+      </li>
+    </ul>
+  </nav>
+  <div className={styles.navIcons}>
+    <Link href="/Perfil">
+      <FaUser className={styles.icon} aria-label="Perfil de usuario" />
+    </Link>
+    <Link href="/cart">
+      <FaShoppingCart className={styles.icon} aria-label="Carrito de compras" />
+    </Link>
+  </div>
+</header>
+
 
       {/* Hero Section */}
       <section className={styles.hero}>
@@ -130,7 +133,7 @@ const Index = () => {
         <section id="newsletter" className={styles.newsletter}>
           <div className={styles["newsletter-content"]}>
             <h2>Aromas, difusores y humidificadores. ¡El bienestar para tu hogar!</h2>
-            <p>Suscríbete para recibir ofertas exclusivas y novedades.</p>
+            <p>Recibir ofertas exclusivas y novedades.</p>
             <form className={styles["newsletter-form"]}>
               <button type="submit">Contactanos</button>
             </form>

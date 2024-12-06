@@ -3,16 +3,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;  /* Ajusta el padding a tu preferencia */
-  background-color: white;  /* Cambia el fondo para que se distinga del contenido */
-  width: 100%; /* Esto asegura que el navbar ocupe todo el ancho */
-  position: fixed;  /* Esto asegura que el navbar siempre esté en la parte superior */
-  top: 0;  /* Asegura que se quede fijo en la parte superior */
-  left: 0;  /* Asegura que se quede alineado a la izquierda */
-  z-index: 1000;  /* Asegura que el navbar quede encima del resto del contenido */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Añade una sombra suave debajo */
+  padding: 1rem 2rem;  
+  background-color: white;  
+  width: 100%; 
+  position: fixed; 
+  top: 0; 
+  left: 0;  
+  z-index: 1000; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
   width: 100%;
-  height: 60px;  /* Ajusta la altura del navbar según el diseño */
+  height: 60px;  
 }
 
 /* Logo */
