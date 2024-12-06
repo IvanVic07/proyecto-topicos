@@ -7,13 +7,17 @@ const ProductPage = () => {
   return (
     <div className="product-page">
       {/* Encabezado */}
-      <header className="header">
         <img src={logo} alt="Difuaura Logo" className="logo" />
+        <header className={styles.navbar}>
+        <div className={styles.logo}>DifuAura</div>
         <nav>
-          <ul>
-            <li>Productos</li>
-            <li>Aprende</li>
-            <li>Contáctanos</li>
+          <ul className={styles.navLinks}>
+            <li>
+              <Link href="/Productos">Productos</Link>
+            </li>
+            <li>
+              <a href="/Blog">Aprende</a>
+            </li>
           </ul>
         </nav>
         <div className="icons">
